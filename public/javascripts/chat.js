@@ -1,5 +1,5 @@
 $(function() {
-
+    
   var host = location.origin.replace(/^http/, 'ws')
   var ws = new WebSocket(host);
   ws.onmessage = function (event) {
@@ -19,7 +19,7 @@ $(function() {
     }
   };
 
-  $('#submit').on('click', function() {
+  var onEnter = function() {
     var name = $('#name').val();
     var $message = $('#message');
     var msg = $message.val();
@@ -30,6 +30,10 @@ $(function() {
     ws.send(JSON.stringify({ name: name, msg: msg, room: room}));
     $message.val('');
 
-  });
+  }
+
+  $('#submit').on('click', onEnter);
+  // register Enter event
+  $('document').enterKey(onEnter);
 
 });
