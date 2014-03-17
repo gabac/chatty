@@ -51,7 +51,7 @@ wss.on('connection', function(ws) {
 
   ws.on('message', function(message) {
     message = JSON.parse(message);
-    console.log('received from ' + userID + ':' + message.name + " - " + message.msg);
+    console.log('received from ' + userID + ':' + message.name + " - | " + message.msg + " in room: " + message.room);
     for (id in clients ) {
       clients[id].send(JSON.stringify(message));
     }
