@@ -19,10 +19,11 @@ $(function() {
     var name = $('#name').val();
     var $message = $('#message');
     var msg = $message.val();
+    var room = $('#room').val();
 
     console.log('sending: ' + name + ": " + msg);
 
-    ws.send(JSON.stringify({ name: name, msg: msg, room: 'zhaw'}));
+    ws.send(JSON.stringify({ name: name, msg: msg, room: room}));
     $message.val('');
 
   });
