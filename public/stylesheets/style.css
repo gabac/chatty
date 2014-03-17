@@ -11,3 +11,7 @@ span.name {
     color: grey;
     padding-right: 1em;
 }
+span.room {
+	color:green;
+	padding-right: 1em;
+}

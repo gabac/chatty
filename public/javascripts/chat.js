@@ -8,8 +8,10 @@ $(function() {
     console.log(data);
     var name = data.name;
     var msg = data.msg;
+    var room = data.room;
     var name_span = $('<span></span>').addClass('name').html(name);
-    var msg_div = $('<div></div>').html(name_span).append(msg);
+    var room_span = $('<span></span>').addClass('room').html(room);
+    var msg_div = $('<div></div>').html(name_span).append(room_span).append(msg);
 
     $('#chatLog').append(msg_div);
 
