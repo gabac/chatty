@@ -22,7 +22,7 @@ $(function() {
 
     console.log('sending: ' + name + ": " + msg);
 
-    ws.send(JSON.stringify({ name: name, msg: msg}));
+    ws.send(JSON.stringify({ name: name, msg: msg, room: 'zhaw'}));
     $message.val('');
 
   });
