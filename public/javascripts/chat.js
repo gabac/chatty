@@ -1,5 +1,8 @@
 $(function() {
-    
+
+  $('#name').val(localStorage.getItem('chatty_name'));
+  $('#room').val(localStorage.getItem('chatty_room'));
+
   var host = location.origin.replace(/^http/, 'ws')
   var ws = new WebSocket(host);
   ws.onmessage = function (event) {
@@ -11,11 +14,11 @@ $(function() {
     var msg = data.msg;
     var room = data.room;
     if(roomname === room) {
-      var name_span = $('<span></span>').addClass('name').html(name);
       var room_span = $('<span></span>').addClass('room').html(room);
-      var msg_div = $('<div></div>').html(name_span).append(room_span).append(msg);
+      var name_span = $('<span></span>').addClass('name').html(name);
+      var msg_div = $('<div></div>').html(room_span).append(name_span).append(msg);
 
-      $('#chatLog').append(msg_div);
+      $('#chatLog').prepend(msg_div);
     }
   };
 
@@ -24,6 +27,9 @@ $(function() {
     var $message = $('#message');
     var msg = $message.val();
     var room = $('#room').val();
+
+    localStorage.setItem('chatty_name',name);
+    localStorage.setItem('chatty_room',room);
 
     console.log('sending: ' + name + ": " + msg);
 
