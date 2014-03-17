@@ -17,7 +17,7 @@ $(function() {
       var room_span = $('<span></span>').addClass('room').html(room);
       var msg_div = $('<div></div>').html(name_span).append(room_span).append(msg);
 
-      $('#chatLog').append(msg_div);
+      $('#chatLog').prepend(msg_div);
     }
   };
 
