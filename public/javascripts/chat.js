@@ -3,18 +3,20 @@ $(function() {
   var host = location.origin.replace(/^http/, 'ws')
   var ws = new WebSocket(host);
   ws.onmessage = function (event) {
-
+    
+    var roomname = $('#room').val();
     var data = JSON.parse(event.data);
     console.log(data);
     var name = data.name;
     var msg = data.msg;
     var room = data.room;
-    var name_span = $('<span></span>').addClass('name').html(name);
-    var room_span = $('<span></span>').addClass('room').html(room);
-    var msg_div = $('<div></div>').html(name_span).append(room_span).append(msg);
+    if(roomname === room) {
+      var name_span = $('<span></span>').addClass('name').html(name);
+      var room_span = $('<span></span>').addClass('room').html(room);
+      var msg_div = $('<div></div>').html(name_span).append(room_span).append(msg);
 
-    $('#chatLog').append(msg_div);
-
+      $('#chatLog').append(msg_div);
+    }
   };
 
   $('#submit').on('click', function() {
