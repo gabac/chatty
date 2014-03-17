@@ -1,4 +1,6 @@
 $(function() {
+  $('#name').val(localStorage.getItem('chatty_name'));
+  $('#room').val(localStorage.getItem('chatty_room'));
 
   var host = location.origin.replace(/^http/, 'ws')
   var ws = new WebSocket(host);
@@ -24,6 +26,9 @@ $(function() {
     var $message = $('#message');
     var msg = $message.val();
     var room = $('#room').val();
+
+    localStorage.setItem('chatty_name',name);
+    localStorage.setItem('chatty_room',room);
 
     console.log('sending: ' + name + ": " + msg);
 
