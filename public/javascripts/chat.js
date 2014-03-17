@@ -34,6 +34,10 @@ $(function() {
 
   $('#submit').on('click', onEnter);
   // register Enter event
-  $('document').enterKey(onEnter);
+  $('#message').keypress(function(event) {
+      if (event.keyCode === 13) {
+          onEnter();
+      }
+  });
 
 });
