@@ -1,34 +1,22 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <style>
-        body {
-            font-family: "Helvetica Neue", helvetica, arial;
-            padding: 15px;
-        }
-
-        ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        ul li {
-            line-height: 1.4;
-        }
-    </style>
-
-    <script>
-        var host = location.origin.replace(/^http/, 'ws')
-        var ws = new WebSocket(host);
-        ws.onmessage = function (event) {
-            var li = document.createElement('li');
-            li.innerHTML = JSON.parse(event.data);
-            document.querySelector('#pings').appendChild(li);
-        };
-    </script>
+    <title>Chat Server</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/javascripts/chat.js"></script>
 </head>
 <body>
-<h1>Pings</h1>
-<ul id='pings'></ul>
+    <div class="container">
+        <h1>A simple chat server</h1>
+        <div>your name<input type="text" id="name"></div>
+        <div>room name<input type="text" id="room"></div>
+        <div id="chatInput">
+            what say you?<input type="text" id="message">
+            <button id="submit">Send</button>
+        </div>
+        <h2>Chat Log</h2>
+        <div id="chatLog"></div>
+    </div>
 </body>
 </html>
