@@ -39,15 +39,20 @@ var wss = new WebSocketServer({server: server});
 console.log('websocket server created');
 
 var clients = {};
+var messages = new Array();
 wss.on('connection', function(ws) {
   var userID = uuid.v1();
   clients[userID] = ws;
 
   console.log('client :' + userID + ' connected');
-
+  
+  for(var id in messages) {
+        clients[userID].send(messages[id]);
+  }
 
   ws.on('message', function(message) {
     message = JSON.parse(message);
+    messages.push(JSON.stringify(message));
     console.log('received from ' + userID + ':' + message.name + " - " + message.msg);
     for (id in clients ) {
       clients[id].send(JSON.stringify(message));
